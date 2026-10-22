@@ -1,0 +1,13 @@
+# Compatible version ranges; the resolved versions appear in notebook section 1.
+# After a successful build, see README for exporting an exact package snapshot.
+jupyterlab>=4.4,<5
+notebook>=7.4,<8
+ipykernel>=6.29,<8
+numpy>=2.2,<3
+sympy>=1.14,<2
+matplotlib>=3.10,<4
+scipy>=1.15,<2
+mpi4py>=4.0,<5
+bash_kernel>=0.10,<1
+nbformat>=5.10,<6
+nbclient>=0.10,<1

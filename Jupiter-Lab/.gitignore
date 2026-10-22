@@ -1,0 +1,8 @@
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+__pycache__/
+.env
+examples/mpi_hello
+examples/pari_demo
+notebooks/*_executed.ipynb
+requirements-resolved.txt
