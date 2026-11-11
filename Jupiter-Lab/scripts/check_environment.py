@@ -14,7 +14,7 @@ for name in ['numpy', 'sympy', 'matplotlib', 'scipy', 'mpi4py.MPI']:
     importlib.import_module(name)
     print(f'Import OK: {name}', flush=True)
 
-for tool in ['mpiexec', 'mpicc', 'gcc', 'maxima', 'gp']:
+for tool in ['mpiexec', 'mpicc', 'gcc', 'maxima', 'gp', 'pandoc', 'xelatex']:
     assert shutil.which(tool), f'Werkzeug fehlt: {tool}'
 
 kernels = KernelSpecManager().find_kernel_specs()

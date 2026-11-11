@@ -38,6 +38,8 @@ Für das zweite Notebook **Bash** auswählen. Ein Kernelwechsel verändert die S
 | Maxima | Symbolische Algebra als externes Programm |
 | PARI/GP und PARI-Entwicklungsbibliothek | Zahlentheorie über GP-Shell und C |
 | Python- und Bash-Kernel | Zwei direkt nutzbare Jupyter-Kernel |
+| Pandoc | Konvertierung von Markdown beim Notebook-Export mit nbconvert |
+| TeX Live mit XeLaTeX | PDF-Export von Notebooks über nbconvert |
 
 Für Maxima verwendet das Image die [Debian-Variante mit ECL](https://packages.debian.org/bookworm/maxima-sage), erreichbar als `maxima`. Der Paketname `maxima-sage` bedeutet dabei nicht, dass das vollständige SageMath installiert wird.
 
@@ -100,6 +102,8 @@ docker compose run --rm jupyter python scripts/check_environment.py
 | Port 8888 ist belegt | In einer Datei `.env` neben `compose.yaml` die Zeile `JUPYTER_PORT=8890` speichern. Danach `docker compose up -d` und `http://localhost:8890/lab` öffnen. |
 | Es erscheint weiterhin die Jupyter-Anmeldung | Geänderte `compose.yaml` verwenden, Notebooks speichern und `docker compose up -d --force-recreate` ausführen. Danach `http://localhost:8888/lab` ohne alten Token-Link öffnen. |
 | `ModuleNotFoundError` | Prüfen, ob du den Python-Kernel dieses Containers verwendest; nach Änderungen an `requirements.txt` neu bauen. |
+| `nbconvert failed: Pandoc wasn't found` | Pandoc ist im Dockerfile enthalten. Notebooks speichern, dann mit `docker compose up -d --build` neu bauen und den Container neu erstellen. Eine Windows-Installation von Pandoc hilft dem Container nicht. |
+| `xelatex not found on PATH` | TeX Live ist im Dockerfile enthalten. Notebooks speichern und `docker compose up -d --build` ausführen, damit der PDF-Export die neue Container-Umgebung verwendet. |
 | Ergebnisse passen nicht zum Code | Speichern, dann **Run → Restart Kernel and Run All Cells**. |
 | MPI-Ausgaben haben andere Reihenfolge | Erwartbar: Prozesse schreiben unabhängig voneinander. |
 

@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1 \
     OPENBLAS_NUM_THREADS=1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    bash gcc libc6-dev openmpi-bin libopenmpi-dev maxima-sage maxima-sage-share pari-gp libpari-dev \
+    bash gcc libc6-dev openmpi-bin libopenmpi-dev maxima-sage maxima-sage-share pari-gp libpari-dev pandoc \
     && ln -s /usr/bin/maxima-sage /usr/local/bin/maxima \
     && rm -rf /var/lib/apt/lists/*
 
@@ -17,6 +17,11 @@ RUN python -m pip install -r /tmp/requirements.txt \
     && python -m bash_kernel.install --sys-prefix \
     && useradd --create-home --uid 1000 student \
     && mkdir -p /workspace && chown student:student /workspace
+
+# nbconvert's PDF exporter uses XeLaTeX and the standard TeX fonts/packages.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    texlive-xetex texlive-fonts-recommended texlive-plain-generic \
+    && rm -rf /var/lib/apt/lists/*
 
 USER student
 WORKDIR /workspace
